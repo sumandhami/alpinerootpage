@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+/* ── Custom Font Faces ─────────────────────────────────────────── */
+@font-face {
+  font-family: 'The Retro Font Demo';
+  src: url('/fonts/TheRetroFontDemo.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Microsoft Tai Le';
+  src: url('/fonts/MicrosoftTaiLe.woff2') format('woff2');
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Design Token Theme ────────────────────────────────────────── */
+@theme {
+  /* Brand Colors */
+  --color-orange:      #FF5B04;
+  --color-teal:        #075056;
+  --color-teal-light:  #0a6b72;
+  --color-navy:        #16232B;
+  --color-navy-hover:  #233544;
+  --color-mist:        #E5ECF2;
+  --color-mist-dark:   #cdd8e0;
+
+  /* Typography */
+  --font-display: 'The Retro Font Demo', 'Trebuchet MS', sans-serif;
+  --font-body:    'Microsoft Tai Le', 'Segoe UI', sans-serif;
+
+  /* Shadows */
+  --shadow-card:   0 4px 24px rgba(22, 35, 43, 0.10);
+  --shadow-hover:  0 12px 40px rgba(22, 35, 43, 0.18);
+  --shadow-orange: 0 8px 32px rgba(255, 91, 4, 0.20);
+
+  /* Easing */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── CSS Design Variables (runtime use) ────────────────────────── */
+:root {
+  --color-teal-muted:  rgba(7, 80, 86, 0.12);
+  --color-navy-light:  rgba(22, 35, 43, 0.08);
+  --color-orange-glow: rgba(255, 91, 4, 0.18);
+
+  --transition-fast:   150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base:   250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:   400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Base Reset & Defaults ─────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    background-color: #E5ECF2;
+    color: #16232B;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    line-height: 1.1;
+  }
+
+  h4, h5, h6 {
+    font-family: var(--font-body);
+  }
+}
+
+/* ── Utility Extensions ────────────────────────────────────────── */
+@layer utilities {
+  .section-padding {
+    padding-top: 96px;
+    padding-bottom: 96px;
+    padding-left: max(24px, calc((100vw - 1200px) / 2));
+    padding-right: max(24px, calc((100vw - 1200px) / 2));
+  }
+
+  .container-xl {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  /* Geometric hero background pattern */
+  .hero-pattern::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      polygon(0 60%, 30% 40%, 60% 55%, 100% 35%, 100% 100%, 0 100%);
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  /* Orange accent bar left border */
+  .border-accent-left {
+    border-left: 4px solid #075056;
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .border-accent-left:hover {
+    border-left-color: #FF5B04;
+  }
+
+  .border-accent-left-light {
+    border-left: 4px solid rgba(229, 236, 242, 0.30);
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .border-accent-left-light:hover {
+    border-left-color: #FF5B04;
+  }
+
+  /* Section label style */
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #075056;
+  }
+
+  .section-label-light {
+    color: rgba(229, 236, 242, 0.60);
+  }
+
+  /* Timeline vertical bar */
+  .timeline-bar {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #075056;
+    transform: translateX(-50%);
+  }
+}
